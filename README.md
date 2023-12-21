@@ -16,7 +16,7 @@ Input layer  𝑎[0] :
 
 Hidden layer  𝑎[1] :
     10 units with ReLU activation, 
-    ReLU (Rectified Linear Unit) is an activation function commonly used in neural networks. It is    defined mathematically as:
+    ReLU (Rectified Linear Unit) is an activation function commonly used in neural networks. It is defined mathematically as:
 
     f(x) = max(0,x)
 
