@@ -16,17 +16,13 @@ Input layer  𝑎[0] :
 
 Hidden layer  𝑎[1] :
     10 units with ReLU activation, 
-    ReLU (Rectified Linear Unit) is an activation function commonly used in neural networks. It is defined mathematically as:
-
+    ReLU (Rectified Linear Unit) is an activation function commonly used in neural networks. It is defined mathematically as :
     f(x) = max(0,x)
-
     In simple terms, the ReLU activation function outputs the input value if it's positive and zero if it's negative. This function introduces non-linearity into the network, allowing it to learn complex relationships within the data. ReLU has become popular due to its simplicity and effectiveness in many deep learning models.
     
 Output layer  𝑎[2] :
     10 units corresponding to the ten digit classes with softmax activation.
-    Softmax is commonly used for multi-class classification problems as it provides a probability distribution over the classes.
-    
-    The softmax function takes a set of values as input and normalizes them into a probability distribution. It computes the probabilities of each class being the correct class.
+    Softmax is commonly used for multi-class classification problems as it provides a probability distribution over the classes. The softmax function takes a set of values as input and normalizes them into a probability distribution. It computes the probabilities of each class being the correct class.
     
     In the context of digit classification:
     The output layer has 10 units, each representing a digit class from 0 to 9.
