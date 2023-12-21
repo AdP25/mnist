@@ -9,10 +9,12 @@ np.random.shuffle(data)
 r,c = data.shape
 data_train = data[0:1000].T
 X_train = data_train[1:c]
+X_train = X_train / 255.
 Y_train = data_train[0]
 
 data_val = data[1000:r].T
 X_val = data_val[1:c]
+X_val = X_val / 255.
 Y_val = data_val[0]
 
 # 0th col of all rows
@@ -44,9 +46,9 @@ def softmax(Z):
 # while the rest are 'cold' (having the value 0).
 def one_hot_arr(Y):
     one_hot_Y = np.zeros((Y.size, Y.max() + 1))
-    print(one_hot_Y.shape)
+    # print(one_hot_Y.shape)
     ind_arr = np.arange(Y.size)
-    print(ind_arr)
+    # print(ind_arr)
     # row from ind_arr and col from Y arr will be set to 1
     one_hot_Y[ind_arr, Y] = 1
     print(one_hot_Y)
@@ -55,7 +57,6 @@ def one_hot_arr(Y):
 
 def forw_prop(X, W1, b1, W2, b2):
     Z1 = W1.dot(X) + b1 # 10, m
-    print("Z1 : ", Z1)
     A1 = reLu(Z1) # 10,m
     Z2 = W2.dot(A1) + b2 # 10,m
     A2 = softmax(Z2) # 10,m
@@ -96,11 +97,9 @@ def gradient_descent(X, Y, alpha, iterations):
     W1, b1, W2, b2 = init_params(size)
     for i in range(iterations):
         Z1, A1, Z2, A2 = forw_prop(X, W1, b1, W2, b2)
-        print("A2 : ", A2)
         dW1, db1, dW2, db2 = back_prop(X, Y, A1, A2, W2, Z1, m)
 
         W1, b1, W2, b2 = update_params(alpha, W1, b1, W2, b2, dW1, db1, dW2, db2)   
-        print("W1 : ", W1)
         if (i+1) % int(iterations/10) == 0:
             print(f"Iteration: {i+1} / {iterations}")
             prediction = get_predictions(A2)
@@ -129,12 +128,12 @@ def show_prediction(index, X, Y, W1, b1, W2, b2):
 # before training
 W1, b1, W2, b2 = init_params(784)
 show_prediction(0, X_val, Y_val, W1, b1, W2, b2)
-# show_prediction(1, X_val, Y_val, W1, b1, W2, b2)
-# show_prediction(2, X_val, Y_val, W1, b1, W2, b2)
-# show_prediction(3, X_val, Y_val, W1, b1, W2, b2)
+show_prediction(1, X_val, Y_val, W1, b1, W2, b2)
+show_prediction(2, X_val, Y_val, W1, b1, W2, b2)
+show_prediction(3, X_val, Y_val, W1, b1, W2, b2)
 
 # after training
-W1, b1, W2, b2 = gradient_descent(X_train, Y_train, 0.10, 10)
+W1, b1, W2, b2 = gradient_descent(X_train, Y_train, 0.10, 500)
 print("X_train : ", X_train.shape)
 #print("Y_train : ", Y_train)
 print("W1 : ", W1.shape)
@@ -143,15 +142,6 @@ print("W2 : ", W2.shape)
 print("b2 : ", b2.shape)
 
 show_prediction(0, X_val, Y_val, W1, b1, W2, b2)
-# show_prediction(1, X_val, Y_val, W1, b1, W2, b2)
-# show_prediction(2, X_val, Y_val, W1, b1, W2, b2)
-# show_prediction(3, X_val, Y_val, W1, b1, W2, b2)
-
-
-
-
-# Y = np.array([2,0,1,1,2,0])
-# print(one_hot_arr(Y))
-# dev_predictions = make_predictions(X_dev, W1, b1, W2, b2)
-# get_accuracy(dev_predictions, Y_dev)
-
+show_prediction(1, X_val, Y_val, W1, b1, W2, b2)
+show_prediction(2, X_val, Y_val, W1, b1, W2, b2)
+show_prediction(3, X_val, Y_val, W1, b1, W2, b2)
