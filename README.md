@@ -25,7 +25,7 @@ Hidden layer  𝑎[1] :
 Output layer  𝑎[2] :
     10 units corresponding to the ten digit classes with softmax activation.
     Softmax is commonly used for multi-class classification problems as it provides a probability distribution over the classes.
-
+    
     The softmax function takes a set of values as input and normalizes them into a probability distribution. It computes the probabilities of each class being the correct class.
     
     In the context of digit classification:
